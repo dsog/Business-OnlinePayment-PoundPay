@@ -1,9 +1,9 @@
-package Business::OnlinePayment::Poundpay;
+package Business::OnlinePayment::PoundPay;
 
 use strict;
 use warnings;
 use Business::OnlinePayment;
-use Poundpay;
+use PoundPay;
 use AutoLoader;
 use vars qw($VERSION @ISA @EXPORT @EXPORT_OK);
 
@@ -77,12 +77,12 @@ sub submit {
 
     my $pp;
     if ( $self->test_transaction ) {
-        $pp = Poundpay->new(
+        $pp = PoundPay->new(
             developer_sid => $content{login},
             auth_token => $content{password}
         );
     } else {
-        $pp = Poundpay->new(
+        $pp = PoundPay->new(
             developer_sid => $content{login},
             auth_token => $content{password},
             api_url => 'https://api.poundpay.com/'
@@ -121,19 +121,19 @@ sub submit {
 
 sub get_transaction_details {
     my ($self, $dev_sid, $token, $payment_sid) = @_;
-    my $pp = Poundpay->new($dev_sid, $token);
+    my $pp = PoundPay->new($dev_sid, $token);
     return $pp->get_payment($payment_sid);
 }
 
 sub get_account {
     my ($self, $dev_sid, $token) = @_;
-    my $pp = Poundpay->new($dev_sid, $token);
+    my $pp = PoundPay->new($dev_sid, $token);
     return $pp->get_account($dev_sid);
 }
 
 sub update_account {
     my ($self, $dev_sid, $token, $data) = @_;
-    my $pp = Poundpay->new($dev_sid, $token);
+    my $pp = PoundPay->new($dev_sid, $token);
     return $pp->update_account($dev_sid, $data);
 }
 
