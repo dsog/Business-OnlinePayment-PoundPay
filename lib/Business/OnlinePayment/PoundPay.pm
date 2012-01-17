@@ -121,19 +121,28 @@ sub submit {
 
 sub get_transaction_details {
     my ($self, $dev_sid, $token, $payment_sid) = @_;
-    my $pp = PoundPay->new($dev_sid, $token);
+    my $pp = PoundPay->new(
+        developer_sid => $dev_sid, 
+        auth_token => $token
+    );
     return $pp->get_payment($payment_sid);
 }
 
 sub get_account {
     my ($self, $dev_sid, $token) = @_;
-    my $pp = PoundPay->new($dev_sid, $token);
+    my $pp = PoundPay->new(
+        developer_sid => $dev_sid, 
+        auth_token => $token
+    );
     return $pp->get_account($dev_sid);
 }
 
 sub update_account {
     my ($self, $dev_sid, $token, $data) = @_;
-    my $pp = PoundPay->new($dev_sid, $token);
+    my $pp = PoundPay->new(
+        developer_sid => $dev_sid, 
+        auth_token => $token
+    );
     return $pp->update_account($dev_sid, $data);
 }
 
