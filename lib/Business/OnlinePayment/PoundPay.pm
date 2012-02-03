@@ -114,9 +114,9 @@ sub submit {
         $self->result_code($result->{status});
     } else {
         $self->is_success(0);
-        $self->error_message($result->{error});
+        $self->result_code('rejected');
+        $self->error_message($result->{error_message});
     }
-
 }
 
 sub get_transaction_details {
